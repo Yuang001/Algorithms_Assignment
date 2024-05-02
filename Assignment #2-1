@@ -1,0 +1,39 @@
+import time
+import matplotlib.pyplot as plt
+
+# Define the function F(n) that you want to measure
+def F(n):
+    # Example: Compute the nth Fibonacci number as F(n)
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return F(n-1) + F(n-2)
+
+# Measure execution time for F(1) to F(100)
+n_values = list(range(1, 101))
+execution_times = []
+
+for n in n_values:
+    start_time = time.time()
+    result = F(n)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    execution_times.append(execution_time)
+    
+    # Print the execution time for each F(n) computation
+    print(f"Computed F({n}) in {execution_time:.6f} seconds")
+
+    # If the computation takes too long or crashes, you can stop early
+    # For example, if n > 40:
+    #     break
+
+# Plotting the execution times
+plt.figure(figsize=(10, 6))
+plt.plot(n_values, execution_times, marker='o', linestyle='-')
+plt.title('Execution Time of F(1) to F(100)')
+plt.xlabel('n')
+plt.ylabel('Execution Time (seconds)')
+plt.grid(True)
+plt.show()
