@@ -1,0 +1,31 @@
+import matplotlib.pyplot as plt
+
+def fibonacci_with_count(n):
+    if n <= 1:
+        return n, 0
+    count = 0
+    previous = 0
+    current = 1
+    for i in range(2, n + 1):
+        count += 1  # Increment count for each new computation
+        next_value = previous + current
+        previous = current
+        current = next_value
+    return current, count
+
+# Calculate F(4) computations for F(n) where n ranges from 5 to 50
+n_values = list(range(5, 51))
+counts = []
+
+for n in n_values:
+    fib_n, count = fibonacci_with_count(n)
+    counts.append(count)
+
+# Plotting the results
+plt.figure(figsize=(10, 6))
+plt.plot(n_values, counts, marker='o', linestyle='-', color='b')
+plt.title('Number of F(4) Computations vs F(n) for n = 5 to 50')
+plt.xlabel('Value of n')
+plt.ylabel('Number of F(4) Computations')
+plt.grid(True)
+plt.show()
